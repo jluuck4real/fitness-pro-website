@@ -19,7 +19,7 @@ function config() {
   const e = env as unknown as Record<string, string | undefined>;
   return {
     key: e.GEMINI_API_KEY || process.env.GEMINI_API_KEY,
-    model: e.GEMINI_MODEL || process.env.GEMINI_MODEL || "gemini-2.5-flash",
+    model: e.GEMINI_MODEL || process.env.GEMINI_MODEL || "gemini-3.6-flash",
   };
 }
 export async function GET() {
@@ -105,16 +105,38 @@ export async function POST(request: Request) {
             role: m.role === "assistant" ? "model" : "user",
             parts: [{ text: m.content }],
           })),
-          generationConfig: { maxOutputTokens: 1800, temperature: 0.5 },
+          generationConfig: {
+            maxOutputTokens: 1800,
+            ...(model.startsWith("gemini-3")
+              ? { thinkingConfig: { thinkingLevel: "low" } }
+              : { temperature: 0.5 }),
+          },
         }),
       },
     );
     if (!upstream.ok || !upstream.body) {
       clearTimeout(timeout);
+      let providerCode: string | undefined;
+      let providerMessage: string | undefined;
+      try {
+        const failure = (await upstream.json()) as {
+          error?: { status?: string; message?: string };
+        };
+        providerCode = failure.error?.status;
+        providerMessage = failure.error?.message
+          ?.split(key)
+          .join("[redacted]")
+          .slice(0, 500);
+      } catch {}
+      console.warn("Fitness AI provider rejected the request", {
+        status: upstream.status,
+        code: providerCode,
+        message: providerMessage,
+      });
       return Response.json(
         {
           error:
-            upstream.status === 429
+            upstream.status === 429 || upstream.status === 503
               ? "O provedor está ocupado. Aguarde e tente novamente."
               : "Não foi possível conectar à IA. Verifique a chave e o modelo no servidor.",
         },

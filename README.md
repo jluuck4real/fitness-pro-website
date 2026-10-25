@@ -28,7 +28,7 @@ A Home inclui o bonequinho de visão computacional solicitado: pontos e conexõe
 Copie .env.example para .dev.vars. Preencha somente as variáveis necessárias no arquivo local, ignorado pelo Git, e reinicie o servidor.
 
 - GEMINI_API_KEY: segredo do provedor para respostas reais com streaming.
-- GEMINI_MODEL: opcional; padrão gemini-2.5-flash, ajustável à disponibilidade da conta.
+- GEMINI_MODEL: opcional; padrão gemini-3.6-flash, ajustável à disponibilidade da conta.
 - RESEND_API_KEY: segredo do serviço de envio de e-mail.
 - CONTACT_FROM: remetente autorizado em um domínio verificado no Resend.
 - CONTACT_TO: e-mail real da equipe destinatária.

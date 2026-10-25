@@ -27,7 +27,7 @@ A origem acadêmica, os recursos e a equipe são verificáveis. Os textos de mis
 - Validar a redação final de missão, visão e valores.
 - Fornecer e-mail institucional, perfis profissionais e canais oficiais de contato.
 - Confirmar política de preços, distribuição pública e eventual publicação em lojas.
-- Configurar `GEMINI_API_KEY` para respostas reais do chatbot.
+- IA conectada por segredo `GEMINI_API_KEY`, com Gemini 3.6 Flash e streaming real validado. Monitorar a quota e manter a credencial privada.
 - Configurar `RESEND_API_KEY`, `CONTACT_FROM` e `CONTACT_TO` para o formulário enviar e-mails. O remetente precisa ser autorizado no provedor.
 - Concluir a validação audiovisual e corporal do aplicativo em aparelho físico, conforme as notas do próprio projeto.
 

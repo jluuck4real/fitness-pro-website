@@ -37,7 +37,7 @@ Integração Gemini real via app/api/chat/route.ts e streaming SSE. GEMINI_API_K
 
 Proteções existentes preservadas: origem, autenticação Sites, Zod, tamanho de corpo, até doze mensagens de dois mil caracteres, até oito requisições por minuto por usuário/isolate, timeout e limite de tokens. A quota em memória não é uma quota global distribuída; antes de ampliar acesso público, use limitação distribuída e orçamento no provedor.
 
-A conversa da sessão usa sessionStorage; o histórico persistente opcional foi preservado. O usuário pode iniciar uma nova conversa e apagar históricos. A rolagem automática acompanha a resposta somente quando o visitante está próximo ao fim, sem puxá-lo enquanto lê mensagens anteriores. Sem chave, há configuração pendente explícita. Não foi feita uma chamada ao provedor com credencial real.
+A conversa da sessão usa sessionStorage; o histórico persistente opcional foi preservado. O usuário pode iniciar uma nova conversa e apagar históricos. A rolagem automática acompanha a resposta somente quando o visitante está próximo ao fim, sem puxá-lo enquanto lê mensagens anteriores. Sem chave, há configuração pendente explícita. A integração real foi validada com credencial de servidor e resposta completa em streaming usando Gemini 3.6 Flash. O modelo anterior deixou de estar disponível para novas contas; a compatibilidade com Gemini 3 remove parâmetros de amostragem descontinuados e usa pensamento baixo para reduzir latência. A chave permanece no arquivo local ignorado e no segredo de runtime do Site.
 
 ## Contato
 
