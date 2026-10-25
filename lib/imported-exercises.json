@@ -1,0 +1,146 @@
+[
+  {
+    "id": "supino",
+    "name": "Supino reto",
+    "muscle": "Peito",
+    "description": "Exercício para desenvolvimento do peitoral, com participação dos tríceps e ombros.",
+    "videoId": "EZMYCLKuGow",
+    "steps": [
+      "Apoie os pés e mantenha as costas estáveis no banco.",
+      "Desça a barra de forma controlada.",
+      "Retorne sem perder a estabilidade dos ombros."
+    ],
+    "equipment": "Barra e banco",
+    "level": "Intermediário",
+    "image": "/images/photo-1534438327276-14e5300c3a48.jpg",
+    "tips": "Priorize controle, estabilidade e uma amplitude confortável. Ajuste a carga com orientação profissional.",
+    "errors": "Usar impulso, perder o alinhamento ou continuar com dor.",
+    "source": "Fitness App · lib/models/exercise_catalog.dart. Equipamentos, dicas e erros: complemento editorial web."
+  },
+  {
+    "id": "agachamento",
+    "name": "Agachamento livre",
+    "muscle": "Pernas",
+    "description": "Movimento composto que trabalha quadríceps, glúteos e posteriores.",
+    "videoId": "zgk71dUUt0Y",
+    "steps": [
+      "Encontre uma base estável e mantenha os pés apoiados.",
+      "Flexione quadris e joelhos com controle.",
+      "Retorne mantendo o equilíbrio e uma amplitude confortável."
+    ],
+    "equipment": "Peso corporal",
+    "level": "Fundamental",
+    "image": "/images/photo-1574680096145-d05b474e2155.jpg",
+    "tips": "Priorize controle, estabilidade e uma amplitude confortável. Ajuste a carga com orientação profissional.",
+    "errors": "Usar impulso, perder o alinhamento ou continuar com dor.",
+    "source": "Fitness App · lib/models/exercise_catalog.dart. Equipamentos, dicas e erros: complemento editorial web."
+  },
+  {
+    "id": "rosca",
+    "name": "Rosca direta",
+    "muscle": "Bíceps",
+    "description": "Exercício de flexão do cotovelo para trabalhar os bíceps.",
+    "videoId": "c__3LAiXYOk",
+    "steps": [
+      "Mantenha os cotovelos próximos ao tronco.",
+      "Flexione os braços sem balançar o corpo.",
+      "Desça a carga de maneira controlada."
+    ],
+    "equipment": "Barra ou halteres",
+    "level": "Fundamental",
+    "image": "/images/photo-1581009146145-b5ef050c2e1e.jpg",
+    "tips": "Priorize controle, estabilidade e uma amplitude confortável. Ajuste a carga com orientação profissional.",
+    "errors": "Usar impulso, perder o alinhamento ou continuar com dor.",
+    "source": "Fitness App · lib/models/exercise_catalog.dart. Equipamentos, dicas e erros: complemento editorial web."
+  },
+  {
+    "id": "puxada",
+    "name": "Puxada frontal",
+    "muscle": "Costas",
+    "description": "Exercício para os músculos das costas, especialmente o latíssimo do dorso.",
+    "videoId": "pJM_rHhluK8",
+    "steps": [
+      "Ajuste o assento e o apoio das pernas.",
+      "Puxe a barra à frente do corpo com controle.",
+      "Retorne sem soltar a carga bruscamente."
+    ],
+    "equipment": "Polia",
+    "level": "Fundamental",
+    "image": "/images/photo-1534438327276-14e5300c3a48.jpg",
+    "tips": "Priorize controle, estabilidade e uma amplitude confortável. Ajuste a carga com orientação profissional.",
+    "errors": "Usar impulso, perder o alinhamento ou continuar com dor.",
+    "source": "Fitness App · lib/models/exercise_catalog.dart. Equipamentos, dicas e erros: complemento editorial web."
+  },
+  {
+    "id": "desenvolvimento",
+    "name": "Desenvolvimento",
+    "muscle": "Ombros",
+    "description": "Movimento de empurrar para desenvolver os músculos dos ombros.",
+    "videoId": "L-iQfHVeuVg",
+    "steps": [
+      "Mantenha o tronco estável.",
+      "Eleve a carga sem compensar com a lombar.",
+      "Retorne lentamente à posição inicial."
+    ],
+    "equipment": "Halteres",
+    "level": "Intermediário",
+    "image": "/images/photo-1583454110551-21f2fa2afe61.jpg",
+    "tips": "Priorize controle, estabilidade e uma amplitude confortável. Ajuste a carga com orientação profissional.",
+    "errors": "Usar impulso, perder o alinhamento ou continuar com dor.",
+    "source": "Fitness App · lib/models/exercise_catalog.dart. Equipamentos, dicas e erros: complemento editorial web."
+  },
+  {
+    "id": "triceps",
+    "name": "Tríceps pulley",
+    "muscle": "Tríceps",
+    "description": "Extensão do cotovelo realizada na polia.",
+    "videoId": "BI881NpBDHs",
+    "steps": [
+      "Mantenha os cotovelos junto ao corpo.",
+      "Estenda os braços sem movimentar os ombros.",
+      "Retorne de forma controlada."
+    ],
+    "equipment": "Polia",
+    "level": "Fundamental",
+    "image": "/images/photo-1581009146145-b5ef050c2e1e.jpg",
+    "tips": "Priorize controle, estabilidade e uma amplitude confortável. Ajuste a carga com orientação profissional.",
+    "errors": "Usar impulso, perder o alinhamento ou continuar com dor.",
+    "source": "Fitness App · lib/models/exercise_catalog.dart. Equipamentos, dicas e erros: complemento editorial web."
+  },
+  {
+    "id": "prancha",
+    "name": "Prancha",
+    "muscle": "Abdômen",
+    "description": "Exercício isométrico para o abdômen e a musculatura do core.",
+    "videoId": "qNRqGqESAWU",
+    "steps": [
+      "Apoie os antebraços e as pontas dos pés.",
+      "Mantenha o corpo alinhado e respire normalmente.",
+      "Interrompa quando não conseguir manter a posição."
+    ],
+    "equipment": "Colchonete",
+    "level": "Fundamental",
+    "image": "/images/photo-1517836357463-d25dfeac3438.jpg",
+    "tips": "Priorize controle, estabilidade e uma amplitude confortável. Ajuste a carga com orientação profissional.",
+    "errors": "Usar impulso, perder o alinhamento ou continuar com dor.",
+    "source": "Fitness App · lib/models/exercise_catalog.dart. Equipamentos, dicas e erros: complemento editorial web."
+  },
+  {
+    "id": "elevacao-lateral",
+    "name": "Elevação lateral",
+    "muscle": "Ombros",
+    "description": "Movimento para trabalhar a região lateral dos ombros.",
+    "videoId": "IwWvZ0rlNXs",
+    "steps": [
+      "Mantenha o tronco estável e os cotovelos levemente flexionados.",
+      "Eleve os braços lateralmente com controle.",
+      "Retorne sem balançar o corpo."
+    ],
+    "equipment": "Halteres",
+    "level": "Fundamental",
+    "image": "/images/photo-1583454110551-21f2fa2afe61.jpg",
+    "tips": "Priorize controle, estabilidade e uma amplitude confortável. Ajuste a carga com orientação profissional.",
+    "errors": "Usar impulso, perder o alinhamento ou continuar com dor.",
+    "source": "Fitness App · lib/models/exercise_catalog.dart. Equipamentos, dicas e erros: complemento editorial web."
+  }
+]
