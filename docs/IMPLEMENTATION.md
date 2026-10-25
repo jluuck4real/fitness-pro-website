@@ -1,67 +1,63 @@
-# FitnessPro · Blue Future Fitness
+# Implementação institucional — Fitness Pro
 
-## Origem e arquitetura
+## Escopo e arquitetura
 
-O site anterior está preservado na pasta pai, sem alterações. O aplicativo original foi localizado em `C:/src/fitness_app` e somente lido.
+A Home foi reformulada para apresentar o aplicativo Fitness Pro, projeto de TCC de João Lucas, Raul Dias e Renato Silva. A navegação principal contém apresentação, missão proposta, recursos, tecnologia, equipe, FAQ, contato e chatbot. O website não executa o Flutter nem tenta substituir o aplicativo.
 
-- `lib/theme/app_theme.dart`: paleta Blue Future, tipografia Manrope e superfícies azuis.
-- `lib/models/exercise_catalog.dart`: oito nomes, categorias, descrições, passos e IDs de vídeos importados, sem inventar uma biblioteca maior.
-- `lib/services/pose_tracking_service.dart`: ML Kit no app, confiança mínima de 0,75, escolha de lado estável e intervalo de 120 ms.
-- `lib/services/movement_analyzer.dart`: regras de ângulo e confirmação em três observações.
-- `docs/iafit_reference/main.py` e `utils.py`: referência histórica YOLO e cálculo de ângulos.
+A stack existente foi preservada: React 19, TypeScript, Vinext/Vite compatível com rotas Next.js, Tailwind 4 e Cloudflare Workers. A navegação usa anchors nativos e View Transitions como melhoria progressiva, preservando a correção do problema de navegação RSC observado anteriormente em produção. Nenhuma biblioteca 3D foi adicionada. Lighthouse foi adicionado exclusivamente como dependência de desenvolvimento para auditoria.
 
-React 19 + TypeScript com Vinext (API de roteamento compatível com Next.js), Vite e Cloudflare Workers. Esta escolha mantém rotas de servidor e permite publicar pelo Sites. Tailwind 4 e CSS personalizado formam o design system; Motion anima as entradas; Lucide fornece ícones; Recharts renderiza dados reais. Assistente, gráficos e laboratório são carregados em módulos separados.
+Conteúdo central em lib/project-content.ts; a auditoria de fontes e pendências está em docs/CONTENT_AUDIT.md. O relatório anterior foi preservado em docs/LEGACY_PLATFORM.md. O Flutter em C:/src/fitness_app e os arquivos HTML da pasta pai permaneceram intactos.
 
-Os links usam navegação nativa entre documentos e melhoria progressiva com View Transitions. O teste no Worker de produção detectou uma falha de prefetch/navegação RSC no Vinext beta, ausente em desenvolvimento; os anchors sem interceptação evitam essa falha e mantêm URLs diretas e acessíveis.
+## Identidade e imagens reais
 
-## Dados e privacidade
+A paleta do app e a fonte Manrope foram preservadas. A fonte é hospedada localmente com sua licença OFL. Capturas reais em artifacts/previews foram convertidas para WebP em duas resoluções; a Home apresenta a tela de onboarding original, e o seletor de recursos apresenta biblioteca, detalhes, sessão e progresso. Dados de teste existentes nas capturas são identificados como ilustrativos.
 
-Perfil, foto, preferência de movimento, planos ajustados, conversas opcionais e sessões ficam em `localStorage`, no navegador atual. O site começa sem histórico. O cronômetro mede o tempo real e uma sessão só é registrada após marcar todas as séries e pressionar concluir. Não há estimativa de calorias nem sincronização com o banco SQLite do app.
+Os retratos e as responsabilidades da equipe vêm de team.html. O nome dos integrantes também foi confirmado na seção Sobre do aplicativo. Não há biografias, links profissionais, preços, downloads públicos ou números de usuários inventados. Missão, visão e valores são propostas editoriais identificadas para aprovação pela equipe.
 
-O Site publicado é privado, com autenticação do próprio Sites. Não há cadastro de senhas adicional. A API de IA exige identidade autenticada. Localmente, o starter fornece uma identidade de teste: não use esse modo de desenvolvimento como servidor público.
+## Bonequinho de visão computacional na Home
 
-Em dispositivos compartilhados, qualquer pessoa com acesso ao mesmo perfil do navegador pode ler os registros. O usuário pode exportar perfil e sessões ou apagar o histórico. Histórico de conversas é opt-in e pode ser apagado no assistente.
+components/pose-demonstration.tsx desenha uma figura SVG com pontos corporais e conexões. Há duas posições e um botão para animar o movimento dos braços. Esta é uma representação visual explícita, sem acessar a câmera do visitante ou simular uma detecção real.
 
-## Exercícios e planejamento
+O desenho utiliza apenas quatorze pontos estilizados e quinze conexões para explicar o conceito; não pretende reproduzir todos os landmarks do ML Kit. As coordenadas são interpoladas a no máximo vinte atualizações por segundo, sem atualizar estado React por frame. O loop de animação é cancelado fora da tela, durante pausa e quando movimento reduzido está ativo. Há uma pequena resposta ao cursor apenas em desktop. O aplicativo real continua usando Google ML Kit e o analisador Dart; o chatbot é um serviço separado do site.
 
-Os oito exercícios do catálogo original têm busca normalizada para acentos, filtros de categoria e equipamento, página individual, passos, vídeo incorporado apenas após ação e link alternativo ao YouTube. As fotos são ilustrativas, hospedadas com o site; não são vídeos instrutivos nem imagens biomecânicas específicas.
+## Animações e desempenho
 
-Equipamentos, nível, dicas e erros comuns são complementos editoriais identificados nos detalhes. As três rotinas web são referências editoriais feitas com exercícios reais, sem importar os números ilustrativos de calorias e duração do app como registros pessoais. O usuário pode ajustar séries e repetições antes de iniciar; ajustes ficam no dispositivo. Duração exibida no catálogo é uma estimativa, o histórico usa tempo medido.
+- Conteúdo institucional renderizado no servidor, com imagens e espaço reservado para prevenir deslocamentos.
+- Scroll reveal por Intersection Observer; elementos já visíveis não são ocultados na hidratação, e o conteúdo permanece acessível sem animações.
+- Stagger curto, restrito a transform e opacity; reduções de deslocamento e atraso em mobile.
+- SVG pequeno; sem sistema de partículas, WebGL, vídeo de fundo ou modelo de visão computacional carregado na Home.
+- Fonte local pré-carregada, imagens WebP locais, srcset nos mockups principais e lazy loading abaixo da dobra.
+- Primeiro retrato priorizado na página da equipe, conforme a descoberta de LCP na auditoria inicial.
+- Chatbot, biblioteca de gráficos e laboratório antigo são módulos separados. A Home institucional não solicita webcam, modelo ML Kit/MediaPipe ou biblioteca 3D.
+- Links nativos e View Transitions opcionais; prefers-reduced-motion respeitado tanto no CSS quanto no SVG.
 
-## IA real
+## Chatbot
 
-`app/api/chat/route.ts` utiliza a API REST Gemini `streamGenerateContent`. A chave nunca é enviada ao cliente. Sem configuração, `/api/chat` informa `configured: false` e o campo de envio fica desabilitado, com estado pendente explícito.
+Integração Gemini real via app/api/chat/route.ts e streaming SSE. GEMINI_API_KEY e GEMINI_MODEL permanecem somente no servidor. O prompt inclui o catálogo importado e informações institucionais verificadas: equipe, propósito, FAQ, rotas e limites do projeto. O assistente não alega ter acesso à câmera ou a dados privados, não inventa informações pendentes e possui finalidade educativa.
 
-Proteções: origem igual à origem do servidor, identidade autenticada, validação Zod de papéis/conteúdo/alternância, limite de 12 mensagens com até 2.000 caracteres cada, limite de corpo de 30.000 caracteres, até oito solicitações por minuto por usuário no processo/isolate, saída de até 1.800 tokens, timeout de 60 segundos, erros sem detalhes do provedor e cancelamento do streaming. O contexto é formado pelo catálogo real e pela conversa recente; não transmite o perfil, histórico de treinos nem vídeo.
+Proteções existentes preservadas: origem, autenticação Sites, Zod, tamanho de corpo, até doze mensagens de dois mil caracteres, até oito requisições por minuto por usuário/isolate, timeout e limite de tokens. A quota em memória não é uma quota global distribuída; antes de ampliar acesso público, use limitação distribuída e orçamento no provedor.
 
-O limite em memória não é uma quota global entre isolates ou reinicializações. Antes de abrir acesso público em escala, configure limitação distribuída no provedor/Cloudflare e orçamento no provedor da IA. O Site permanece privado.
+A conversa da sessão usa sessionStorage; o histórico persistente opcional foi preservado. O usuário pode iniciar uma nova conversa e apagar históricos. A rolagem automática acompanha a resposta somente quando o visitante está próximo ao fim, sem puxá-lo enquanto lê mensagens anteriores. Sem chave, há configuração pendente explícita. Não foi feita uma chamada ao provedor com credencial real.
 
-O modelo padrão é configurável. Verifique a disponibilidade na conta do provedor antes de ativar. Não foi feito teste com credencial real, pois nenhuma foi fornecida/configurada nesta tarefa.
+## Contato
 
-Referência: https://ai.google.dev/api/generate-content
+app/api/contact/route.ts integra a API de e-mail Resend sem SDK adicional. Variáveis: RESEND_API_KEY, CONTACT_FROM (remetente verificado), CONTACT_TO (destinatário real). O frontend nunca recebe a chave ou a configuração interna dos endereços.
 
-## Análise corporal
+Validação de nome/e-mail/mensagem no navegador e no servidor, limites de tamanho, honeypot, origem, identidade autenticada quando configurado, até três tentativas por hora por usuário/isolate, timeout de doze segundos e chave de idempotência por mensagem. O sucesso informa apenas aceitação pelo serviço, não entrega garantida. Nenhum envio real foi feito nesta sessão.
 
-MediaPipe Pose Landmarker usa webcam somente após ação e permissão. WASM e modelo público são carregados sob demanda. Frames permanecem no dispositivo; o site não grava nem envia vídeo. Inferência CPU limitada a cerca de oito quadros por segundo reduz custo, mas roda na thread principal; dispositivos muito lentos podem apresentar quedas de fluidez. Um worker dedicado é uma evolução possível.
+Sem serviço configurado, o formulário informa isso e a API responde 503 sem enviar ou registrar uma mensagem. E-mail institucional e links sociais ainda não foram fornecidos. Documentação primária consultada: https://github.com/resend/resend-skills/blob/main/skills/resend/references/sending/overview.md.
 
-Regras portadas do app:
+## Preservação
 
-| Exercício | Articulação | Posição inicial | Alvo |
-| --- | --- | --- | --- |
-| Agachamento | Quadril–joelho–tornozelo | > 160° | < 90° |
-| Rosca direta | Ombro–cotovelo–punho | > 160° | < 50° |
-| Elevação lateral | Quadril–ombro–cotovelo | < 40° | > 90° |
+As páginas antigas /exercicios, /treinos, /progresso, /perfil e /analise continuam disponíveis e seus arquivos foram preservados, fora do foco da navegação institucional. Nenhum localStorage anterior foi apagado. A navegação principal e a Home agora apresentam o app, sem recriar treinos e dashboards como foco do site.
 
-Cada fase exige três leituras consecutivas. Uma repetição é contada ao atingir o alvo depois da posição inicial; exige retorno à posição inicial para rearmar. Pontos coincidentes, baixa visibilidade, mais de uma pessoa e perda de detecção desarmam o contador. A mudança de lado também desarma. O ângulo usa coordenadas de pixels para evitar distorção da proporção da imagem.
+## Verificação e relatórios
 
-São estimativas 2D experimentais, não uma avaliação completa de técnica ou risco de lesão. Os limiares são critérios computacionais herdados do app, não prescrições universais de amplitude. Desenvolvimento e abdominal não são apresentados como suportados para contagem na web. Regras foram testadas com sequências sintéticas; webcam foi testada com dispositivo virtual sem corpo para validar inicialização, carregamento do modelo e desligamento. Não houve validação humana da contagem com câmera física nesta sessão.
+- TypeScript, lint, build de produção e testes unitários de análise e validação de contato.
+- E2E institucional: demonstração corporal, recursos, equipe, busca/categorias/accordion por teclado, contato não configurado, honeypot, origem e chatbot pendente.
+- Responsividade verificada em 360, 390, 768 e 1440 pixels, sem overflow horizontal.
+- Testes anteriores executados para garantir os fluxos de biblioteca, treino, persistência e perfil.
+- Interface de streaming e restauração da conversa testadas com fixture explicitamente identificada somente no teste; não valida a API de IA real sem chave.
+- Lighthouse em Chrome headless, build Worker de produção local, simulação mobile e throttling padrão. Relatórios HTML/JSON brutos em outputs/institutional/; medições iniciais preservadas com prefixo lighthouse-baseline. A auditoria final é registrada em docs/PERFORMANCE.md.
 
-A figura da Home é uma escultura em coordenadas 3D projetadas em Canvas 2D, formada por partículas e conexões; reage ao cursor e respeita movimento reduzido. É visualização artística, identificada como tal, independente da câmera.
-
-Referência: https://developers.google.com/edge/mediapipe/solutions/vision/pose_landmarker/web_js
-
-## Manutenção
-
-Dados importados em `lib/imported-exercises.json`. Para reimportar do app: `node scripts/import-fitness.mjs`, depois `node scripts/cache-images.mjs`. O importador interrompe se o formato ou número de exercícios mudar. O cache baixa as fotos ilustrativas do Unsplash para o próprio site. Licenças e permissões de vídeos são dos respectivos autores; o fallback de YouTube permanece disponível.
-
-Fontes Google Manrope e DM Sans têm fallback local. Vídeos e o modelo exigem rede. Se o usuário bloquear a câmera ou os recursos externos, a interface mostra erro ou alternativa e não inventa resultados.
+Pontuações são observações do ambiente de teste, não garantias para todo dispositivo ou para a rede da publicação. Metadados, descrições, canonical e Open Graph foram atualizados. robots/noindex permanece adequado ao acesso privado existente do Site; a audiência não foi alterada.

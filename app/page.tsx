@@ -1,4 +1,4 @@
-import FitnessPlatform from "@/components/fitness-platform";
+import InstitutionalHome from "@/components/institutional-content";
 export default function Home() {
-  return <FitnessPlatform />;
+  return <InstitutionalHome />;
 }

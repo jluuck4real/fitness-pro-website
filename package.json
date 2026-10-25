@@ -12,9 +12,11 @@
     "start": "node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate",
-    "test": "node --test scripts/pose.test.mjs",
-    "test:e2e": "node scripts/qa.mjs",
-    "test:camera": "node scripts/camera-qa.mjs"
+    "test": "node --test scripts/pose.test.mjs scripts/institutional.test.mjs",
+    "test:e2e": "node scripts/institutional-qa.mjs",
+    "test:camera": "node scripts/camera-qa.mjs",
+    "test:legacy": "node scripts/qa.mjs",
+    "audit:mobile": "node scripts/lighthouse-audit.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -59,6 +61,7 @@
     "eslint": "9.39.4",
     "eslint-config-next": "16.3.4",
     "json-rpc-2.0": "1.7.1",
+    "lighthouse": "^13.5.0",
     "prettier": "^3.9.10",
     "raw-body": "3.0.2",
     "react-server-dom-webpack": "19.2.6",

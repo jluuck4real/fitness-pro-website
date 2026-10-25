@@ -40,6 +40,32 @@ export default function Chat() {
     [sidebar, setSidebar] = useState(false);
   const end = useRef<HTMLDivElement>(null),
     abort = useRef<AbortController | null>(null);
+  const followResponse = useRef(true);
+  useEffect(() => {
+    queueMicrotask(() => {
+      try {
+        const saved = sessionStorage.getItem("fitnesspro.chat-session.v1");
+        if (saved) setMessages(JSON.parse(saved));
+      } catch {
+        setError("Não foi possível recuperar a conversa desta sessão.");
+      }
+    });
+  }, []);
+  useEffect(() => {
+    if (messages.length)
+      queueMicrotask(() => {
+        try {
+          sessionStorage.setItem(
+            "fitnesspro.chat-session.v1",
+            JSON.stringify(messages),
+          );
+        } catch {
+          setError(
+            "O navegador não permitiu guardar esta conversa durante a sessão.",
+          );
+        }
+      });
+  }, [messages]);
   useEffect(() => {
     fetch("/api/chat")
       .then((r) => r.json() as Promise<{ configured: boolean }>)
@@ -50,11 +76,15 @@ export default function Chat() {
     return () => abort.current?.abort();
   }, []);
   useEffect(() => {
-    end.current?.scrollIntoView({ behavior: "instant" });
+    if (followResponse.current)
+      end.current?.scrollIntoView({ behavior: "instant", block: "nearest" });
   }, [messages, busy]);
   function fresh() {
     abort.current?.abort();
     setMessages([]);
+    try {
+      sessionStorage.removeItem("fitnesspro.chat-session.v1");
+    } catch {}
     setConversation("");
     setError("");
     setBusy(false);
@@ -62,8 +92,9 @@ export default function Chat() {
   }
   async function send(text = input) {
     if (busy || !text.trim()) return;
+    followResponse.current = true;
     const current = [
-      ...messages,
+      ...messages.filter((m) => m.content.trim()),
       { role: "user" as const, content: text.trim() },
     ].slice(-12);
     if (current[0]?.role === "assistant") current.shift();
@@ -193,8 +224,8 @@ export default function Chat() {
             <br />
             No seu ritmo.
           </p>
-          <Link href="/analise" className="text-link">
-            Conhecer o Movement Lab <Arrow />
+          <Link href="/tecnologia" className="text-link">
+            Nossa visão computacional <Arrow />
           </Link>
         </div>
       </aside>
@@ -214,7 +245,7 @@ export default function Chat() {
           >
             <Plus size={17} />
           </button>
-          <span>Seu parceiro de movimento</span>
+          <span>Conheça o Fitness Pro</span>
           <span className="pill">
             {configured === null
               ? "VERIFICANDO"
@@ -223,24 +254,31 @@ export default function Chat() {
                 : "CONFIGURAÇÃO PENDENTE"}
           </span>
         </div>
-        <div className="chat-scroll">
+        <div
+          className="chat-scroll"
+          onScroll={(event) => {
+            const e = event.currentTarget;
+            followResponse.current =
+              e.scrollHeight - e.scrollTop - e.clientHeight < 150;
+          }}
+        >
           {!messages.length ? (
             <div className="chat-welcome">
               <div className="ai-orb">
                 <Sparkles size={40} />
               </div>
               <span className="eyebrow">
-                UMA NOVA PERSPECTIVA PARA O SEU TREINO.
+                TECNOLOGIA FICA MELHOR COM UMA BOA CONVERSA.
               </span>
-              <h1>
+              <h2>
                 O próximo passo
                 <br />
                 começa com uma pergunta.
-              </h1>
+              </h2>
               <p>
-                Explore exercícios, entenda movimentos e organize suas ideias.
-                <br />
-                Vamos falar sobre a sua evolução?
+                Conheça o aplicativo, explore sua tecnologia e tire suas
+                dúvidas.
+                <br />O que você quer descobrir sobre o Fitness Pro?
               </p>
               <div className="suggestions">
                 {[
@@ -250,18 +288,18 @@ export default function Chat() {
                     Dumbbell,
                   ],
                   [
-                    "Encontrar meu ritmo",
-                    "Como organizar uma rotina de treinos?",
+                    "Conhecer o projeto",
+                    "O que é o Fitness Pro e quem desenvolve o projeto?",
                     Target,
                   ],
                   [
-                    "Recuperar para evoluir",
-                    "Por que o descanso entre treinos é importante?",
+                    "Entender a tecnologia",
+                    "Como funciona a visão computacional do aplicativo?",
                     Activity,
                   ],
                   [
-                    "Explorar movimentos",
-                    "Quais exercícios de ombro há na biblioteca?",
+                    "Encontrar informações",
+                    "Onde encontro a equipe e as perguntas frequentes?",
                     ScanLine,
                   ],
                 ].map(([title, prompt, Icon]) => (
@@ -375,7 +413,7 @@ export default function Chat() {
           >
             <textarea
               aria-label="Sua mensagem"
-              placeholder="O que você quer evoluir hoje?"
+              placeholder="O que você quer saber sobre o Fitness Pro?"
               maxLength={2000}
               value={input}
               onChange={(e) => setInput(e.target.value)}

@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./institutional.css";
 export const metadata: Metadata = {
-  title: "FitnessPro — Seu corpo. Seu potencial. Sem limites.",
+  metadataBase: new URL(
+    "https://blue-future-fitness-pepic.duskyflint7.chatgpt.site",
+  ),
+  title: {
+    default: "Fitness Pro — Tecnologia para compreender o movimento",
+    template: "%s | Fitness Pro",
+  },
   description:
-    "Treinos com propósito, biblioteca de exercícios, inteligência artificial e reconhecimento corporal. Conheça a próxima evolução do seu movimento.",
+    "Conheça o Fitness Pro: o aplicativo desenvolvido como projeto de TCC por João Lucas, Raul Dias e Renato Silva. Exercícios, treinos e visão computacional.",
+  alternates: { canonical: "/" },
   icons: { icon: "/favicon.svg" },
   openGraph: {
-    title: "FitnessPro — Blue Future Fitness",
+    title: "Fitness Pro — O Fitness App do nosso TCC",
     description:
-      "Tecnologia que entende o seu movimento. Treinos que acompanham a sua evolução.",
+      "Aplicativo, propósito, equipe e tecnologia. Conheça o projeto que aproxima informação, atividade física e visão computacional.",
     type: "website",
     locale: "pt_BR",
   },
@@ -21,6 +29,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/Manrope.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );

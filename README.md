@@ -1,38 +1,45 @@
-# FitnessPro — Blue Future Fitness
+# Fitness Pro — site institucional do Fitness App
 
-Plataforma fitness responsiva baseada no aplicativo Flutter em C:/src/fitness_app. O site anterior permanece intacto na pasta pai.
+Website oficial de apresentação do projeto acadêmico desenvolvido por João Lucas, Raul Dias e Renato Silva. Explica o aplicativo, sua missão proposta, funcionalidades, visão computacional e equipe. Não é uma conversão do Flutter para o navegador.
 
 ## Executar
 
-Requer Node >=22.13. Execute nesta pasta:
+Requer Node >=22.13. Na pasta blue-future:
 
     npm ci
     npm run dev
 
 Abra o endereço Local informado no terminal, normalmente http://127.0.0.1:5173/.
 
-## Conectar a IA
+## Páginas e seções
 
-Copie .env.example para .dev.vars e preencha GEMINI_API_KEY somente nesse arquivo local ignorado pelo Git. Reinicie o servidor. GEMINI_MODEL é opcional, padrão gemini-2.5-flash. Nunca coloque a chave em variáveis NEXT_PUBLIC_ ou VITE_.
+- / — Home com apresentação do aplicativo, missão, recursos, tecnologia, equipe e dúvidas.
+- /#aplicativo, /#missao, /#funcionalidades, /#tecnologia — Navegação por seções.
+- /sobre, /missao, /funcionalidades, /tecnologia — Acesso direto ao conteúdo institucional.
+- /equipe — Fotografias, nomes e responsabilidades reais.
+- /faq — Perguntas com busca, categorias e accordion acessível por teclado.
+- /contato — Formulário com validação, honeypot, limites e estado de configuração.
+- /assistente — Chat real por API, separado da lógica do aplicativo, com contexto institucional.
 
-Na publicação Sites, configure GEMINI_API_KEY como segredo de runtime e, opcionalmente, GEMINI_MODEL pelas variáveis do Site. A IA usa Gemini real com streaming, identidade autenticada, validação e limites. Sem chave, a interface mostra configuração pendente; não há respostas simuladas.
+A Home inclui o bonequinho de visão computacional solicitado: pontos e conexões em SVG, botão para animar o movimento e opção de mudar a posição. A demonstração não solicita câmera nem simula detecção do visitante.
 
-## Páginas
+## Configurar chatbot e contato
 
-- / — Home com escultura interativa de partículas em 3D.
-- /exercicios — Catálogo real, busca e filtros.
-- /exercicios/agachamento — Exemplo de detalhe, vídeo e instruções.
-- /treinos — Rotinas editoriais com exercícios do aplicativo.
-- /treinos/fundamentos — Ajuste de séries/repetições, cronômetro e conclusão.
-- /assistente — Chat com streaming e histórico opcional.
-- /analise — Webcam e MediaPipe, ângulos e contagem real para três exercícios.
-- /progresso — Gráficos e sessões efetivamente registradas.
-- /perfil — Perfil local, preferências, foto, metas e exportação.
-- /sobre — Origem do projeto, recursos e FAQ.
+Copie .env.example para .dev.vars. Preencha somente as variáveis necessárias no arquivo local, ignorado pelo Git, e reinicie o servidor.
 
-Perfil e sessões são locais ao navegador, sem sincronização com o app. O site publicado é privado. Não há dados fictícios de evolução. A análise corporal é experimental e educativa.
+- GEMINI_API_KEY: segredo do provedor para respostas reais com streaming.
+- GEMINI_MODEL: opcional; padrão gemini-2.5-flash, ajustável à disponibilidade da conta.
+- RESEND_API_KEY: segredo do serviço de envio de e-mail.
+- CONTACT_FROM: remetente autorizado em um domínio verificado no Resend.
+- CONTACT_TO: e-mail real da equipe destinatária.
 
-## Verificação
+Na publicação Sites, use as variáveis e segredos de runtime do mesmo Site. Nunca use prefixos NEXT_PUBLIC_ ou VITE_ para credenciais. O Site atual permanece privado, com a autenticação da plataforma. As rotas de envio exigem identidade autenticada quando o serviço está configurado.
+
+Sem as chaves, chatbot e formulário exibem estados pendentes. Nenhuma resposta ou confirmação de envio é inventada. Não há e-mail institucional, links de lojas ou preços presumidos.
+
+O histórico da conversa atual usa sessionStorage. O visitante pode iniciar uma conversa nova; o histórico persistente opcional anterior foi preservado e pode ser apagado. Mensagens são enviadas ao provedor somente ao usar a IA configurada. O formulário usa o servidor e o serviço de e-mail; não guarda os contatos no navegador.
+
+## Verificar
 
     npx tsc --noEmit
     npm run lint
@@ -42,8 +49,22 @@ Perfil e sessões são locais ao navegador, sem sincronização com o app. O sit
 Com o servidor de desenvolvimento aberto:
 
     npm run test:e2e
-    npm run test:camera
+    npm run test:legacy
 
-Os scripts de navegador usam Chrome instalado no caminho padrão do Windows; ajuste executablePath para outro sistema. test:camera usa câmera virtual exclusivamente no teste, com o detector MediaPipe real. Nenhum resultado de teste é inserido na aplicação. Capturas ficam em outputs/.
+Para testar o Worker de produção local:
 
-Mais detalhes, critérios verificáveis, origem dos dados e limites em docs/IMPLEMENTATION.md.
+    npm run start -- --port 4173
+
+Em outro terminal PowerShell:
+
+    $env:QA_BASE_URL='http://127.0.0.1:4173'
+    npm run test:e2e
+    npm run audit:mobile
+
+Os scripts usam Chrome no caminho padrão do Windows. Ajuste executablePath/chromePath se necessário. Relatórios HTML/JSON do Lighthouse e capturas ficam em outputs/institutional/. As pontuações são medições locais com simulação mobile e variam com ambiente e rede; 90 é uma meta, não uma garantia.
+
+## Fonte dos conteúdos e pendências
+
+Consulte docs/CONTENT_AUDIT.md para as fontes do app, textos editoriais e informações ainda pendentes. docs/IMPLEMENTATION.md explica a arquitetura atual, segurança, animações e validação. docs/LEGACY_PLATFORM.md preserva o relatório da plataforma anterior.
+
+Os recursos anteriores de exercícios, treino, análise corporal e perfil permanecem nos seus arquivos e endereços, sem destaque na navegação institucional. Dados já salvos no navegador foram preservados. O aplicativo Flutter e os arquivos HTML originais não foram alterados.

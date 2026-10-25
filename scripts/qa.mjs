@@ -104,7 +104,6 @@ await page
   .waitFor();
 await page.screenshot({ path: "outputs/lab-desktop.png", fullPage: true });
 for (const route of [
-  "/",
   "/exercicios",
   "/treinos",
   "/treinos/fundamentos",

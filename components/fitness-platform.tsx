@@ -1,4 +1,5 @@
 "use client";
+import "@/app/legacy.css";
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "./site-link";
