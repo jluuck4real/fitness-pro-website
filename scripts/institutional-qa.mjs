@@ -96,9 +96,21 @@ try {
     .filter({ hasText: "Nenhuma mensagem foi enviada." })
     .waitFor();
   await page.goto(base + "/assistente", { waitUntil: "networkidle" });
-  await page
-    .getByText("A IA ainda precisa ser conectada.", { exact: true })
-    .waitFor();
+  const chatStatus = await page.request.get(base + "/api/chat");
+  const { configured } = await chatStatus.json();
+  if (!configured) {
+    await page
+      .getByText("A IA ainda precisa ser conectada.", { exact: true })
+      .waitFor();
+  } else {
+    await page.getByLabel("Sua mensagem").waitFor();
+    if (
+      await page
+        .getByText("A IA ainda precisa ser conectada.", { exact: true })
+        .count()
+    )
+      throw Error("Chatbot configurado exibiu configuração pendente");
+  }
   await page.getByRole("button", { name: /Conhecer o projeto/ }).click();
   if (
     !(await page.getByLabel("Sua mensagem").inputValue()).includes(
@@ -177,7 +189,7 @@ try {
   if (origin.status() !== 403) throw Error("Origem externa não rejeitada");
   if (errors.length) throw Error(errors.join("\n"));
   console.log(
-    "PASS: Home institucional, bonequinho interativo, recursos, equipe real, FAQ por busca/filtro/teclado, contato sem envio falso, validação/spam/origem, chatbot pendente, mobile 360/390/768 sem overflow.",
+    "PASS: Home institucional, bonequinho interativo, recursos, equipe real, FAQ por busca/filtro/teclado, contato sem envio falso, validação/spam/origem, estado real do chatbot, mobile 360/390/768 sem overflow.",
   );
 } finally {
   await browser.close();

@@ -1,9 +1,9 @@
-import { env } from "cloudflare:workers";
-import { getChatGPTUser } from "@/app/chatgpt-auth";
+import { serverEnvironment } from "@/lib/server-environment";
+import { requestIdentity } from "@/lib/request-identity";
 import { contactSchema } from "@/lib/contact-validation";
 const windows = new Map<string, { count: number; until: number }>();
 function config() {
-  const values = env as unknown as Record<string, string | undefined>;
+  const values = serverEnvironment();
   return {
     key: values.RESEND_API_KEY || process.env.RESEND_API_KEY,
     to: values.CONTACT_TO || process.env.CONTACT_TO,
@@ -50,15 +50,15 @@ export async function POST(request: Request) {
       },
       { status: 503 },
     );
-  const user = await getChatGPTUser();
-  if (!user)
+  const identity = await requestIdentity(request);
+  if (!identity)
     return Response.json(
       { error: "Entre no site para enviar uma mensagem." },
       { status: 401 },
     );
   const now = Date.now();
   for (const [key, v] of windows) if (v.until < now) windows.delete(key);
-  const window = windows.get(user.userId) || { count: 0, until: now + 3600000 };
+  const window = windows.get(identity) || { count: 0, until: now + 3600000 };
   if (window.count >= 3)
     return Response.json(
       { error: "Limite de envio atingido. Tente novamente mais tarde." },
@@ -70,7 +70,7 @@ export async function POST(request: Request) {
       },
     );
   window.count++;
-  windows.set(user.userId, window);
+  windows.set(identity, window);
   try {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -78,7 +78,7 @@ export async function POST(request: Request) {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${key}`,
-        "Idempotency-Key": `fitnesspro-contact-${user.userId}-${data.requestId}`,
+        "Idempotency-Key": `fitnesspro-contact-${identity}-${data.requestId}`,
       },
       body: JSON.stringify({
         from,

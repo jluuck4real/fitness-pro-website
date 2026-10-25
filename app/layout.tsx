@@ -3,7 +3,10 @@ import "./globals.css";
 import "./institutional.css";
 export const metadata: Metadata = {
   metadataBase: new URL(
-    "https://blue-future-fitness-pepic.duskyflint7.chatgpt.site",
+    process.env.SITE_URL ||
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : "https://blue-future-fitness-pepic.duskyflint7.chatgpt.site"),
   ),
   title: {
     default: "Fitness Pro — Tecnologia para compreender o movimento",

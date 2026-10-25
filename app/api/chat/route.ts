@@ -1,8 +1,9 @@
-import { env } from "cloudflare:workers";
+import { serverEnvironment } from "@/lib/server-environment";
 import { z } from "zod";
 import { aiContext } from "@/lib/project-content";
 import { exercises } from "@/lib/fitness-data";
-import { getChatGPTUser } from "@/app/chatgpt-auth";
+import { requestIdentity } from "@/lib/request-identity";
+export const maxDuration = 60;
 const schema = z.object({
   messages: z
     .array(
@@ -16,7 +17,7 @@ const schema = z.object({
 });
 const limits = new Map<string, { count: number; until: number }>();
 function config() {
-  const e = env as unknown as Record<string, string | undefined>;
+  const e = serverEnvironment();
   return {
     key: e.GEMINI_API_KEY || process.env.GEMINI_API_KEY,
     model: e.GEMINI_MODEL || process.env.GEMINI_MODEL || "gemini-3.6-flash",
@@ -33,8 +34,8 @@ export async function POST(request: Request) {
     await request.body?.cancel();
     return Response.json({ error: "Origem não permitida." }, { status: 403 });
   }
-  const user = await getChatGPTUser();
-  if (!user)
+  const identity = await requestIdentity(request);
+  if (!identity)
     return Response.json(
       { error: "Entre na plataforma para conversar com o assistente." },
       { status: 401 },
@@ -73,14 +74,14 @@ export async function POST(request: Request) {
   }
   const now = Date.now();
   for (const [id, v] of limits) if (v.until < now) limits.delete(id);
-  const limit = limits.get(user.userId) || { count: 0, until: now + 60000 };
+  const limit = limits.get(identity) || { count: 0, until: now + 60000 };
   if (limit.count >= 8)
     return Response.json(
       { error: "Você atingiu o limite de mensagens. Aguarde um minuto." },
       { status: 429, headers: { "Retry-After": "60" } },
     );
   limit.count++;
-  limits.set(user.userId, limit);
+  limits.set(identity, limit);
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 60000);
   request.signal.addEventListener("abort", () => controller.abort(), {
