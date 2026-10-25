@@ -12,6 +12,8 @@ O site anterior está preservado na pasta pai, sem alterações. O aplicativo or
 
 React 19 + TypeScript com Vinext (API de roteamento compatível com Next.js), Vite e Cloudflare Workers. Esta escolha mantém rotas de servidor e permite publicar pelo Sites. Tailwind 4 e CSS personalizado formam o design system; Motion anima as entradas; Lucide fornece ícones; Recharts renderiza dados reais. Assistente, gráficos e laboratório são carregados em módulos separados.
 
+Os links usam navegação nativa entre documentos e melhoria progressiva com View Transitions. O teste no Worker de produção detectou uma falha de prefetch/navegação RSC no Vinext beta, ausente em desenvolvimento; os anchors sem interceptação evitam essa falha e mantêm URLs diretas e acessíveis.
+
 ## Dados e privacidade
 
 Perfil, foto, preferência de movimento, planos ajustados, conversas opcionais e sessões ficam em `localStorage`, no navegador atual. O site começa sem histórico. O cronômetro mede o tempo real e uma sessão só é registrada após marcar todas as séries e pressionar concluir. Não há estimativa de calorias nem sincronização com o banco SQLite do app.

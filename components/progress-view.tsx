@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import Link from "./site-link";
 import { motion } from "motion/react";
 import {
   Dumbbell,

@@ -3708,3 +3708,4 @@ footer {
     font-size: 16px;
   }
 }
+@view-transition{navigation:auto}::view-transition-old(root){animation-duration:.15s}::view-transition-new(root){animation-duration:.25s}@media(prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
