@@ -2,14 +2,52 @@
 
 Website oficial de apresentação do projeto acadêmico desenvolvido por João Lucas, Raul Dias e Renato Silva. Explica o aplicativo, sua missão proposta, funcionalidades, visão computacional e equipe. Não é uma conversão do Flutter para o navegador.
 
+**TypeScript · React · Next.js / Vinext · Tailwind CSS · Cloudflare Workers**
+
+## Funcionalidades
+
+- Apresentação institucional e navegação por páginas e seções.
+- Galeria de capturas reais do aplicativo.
+- FAQ com busca e categorias.
+- Assistente por API com respostas em streaming e contexto do projeto.
+- Formulário de contato com validação e integração de e-mail.
+- Demonstração SVG de pontos corporais, com controles de movimento.
+
+## Capturas do aplicativo apresentadas no site
+
+<p>
+<img src="public/institutional/screens/home.webp" alt="Captura real da tela inicial do aplicativo" width="240">
+<img src="public/institutional/screens/session.webp" alt="Captura real da sessão de treino" width="240">
+</p>
+
+Estas são capturas do aplicativo Flutter, não screenshots da interface do website.
+
 ## Executar
 
-Requer Node >=22.13. Na pasta blue-future:
+Requer Git e Node.js >=22.13.0. Os comandos devem ser executados na raiz clonada:
 
-    npm ci
-    npm run dev
+```sh
+git clone https://github.com/jluuck4real/fitness-pro-website.git
+cd fitness-pro-website
+npm ci
+npm run dev
+```
 
 Abra o endereço Local informado no terminal, normalmente http://127.0.0.1:5173/.
+
+## Estrutura
+
+```text
+app/                  Páginas, estilos e endpoints de chat e contato
+components/           Interface institucional e componentes reutilizáveis
+lib/project-content.ts  Conteúdo, equipe e limites do projeto
+public/institutional/ Capturas do app e imagens da equipe
+scripts/              Execução, build e verificações
+worker/               Entrada do Worker
+docs/                 Arquitetura, auditoria e histórico
+```
+
+O código usa convenções do App Router do Next.js. Os scripts executam Vinext ou Vite de acordo com o ambiente; o destino de produção é Cloudflare Workers.
 
 ## Páginas e seções
 
@@ -21,7 +59,7 @@ Abra o endereço Local informado no terminal, normalmente http://127.0.0.1:5173/
 - /contato — Formulário com validação, honeypot, limites e estado de configuração.
 - /assistente — Chat real por API, separado da lógica do aplicativo, com contexto institucional.
 
-A Home inclui o bonequinho de visão computacional solicitado: pontos e conexões em SVG, botão para animar o movimento e opção de mudar a posição. A demonstração não solicita câmera nem simula detecção do visitante.
+A Home inclui uma demonstração visual de visão computacional: pontos e conexões em SVG, botão para animar o movimento e opção de mudar a posição. A demonstração não solicita câmera nem simula detecção do visitante.
 
 ## Configurar chatbot e contato
 
@@ -62,6 +100,10 @@ Em outro terminal PowerShell:
     npm run audit:mobile
 
 Os scripts usam Chrome no caminho padrão do Windows. Ajuste executablePath/chromePath se necessário. Relatórios HTML/JSON do Lighthouse e capturas ficam em outputs/institutional/. As pontuações são medições locais com simulação mobile e variam com ambiente e rede; 90 é uma meta, não uma garantia.
+
+## Demonstração
+
+O README anterior registra hospedagem privada no Sites. Não há URL pública de demonstração confirmada; o acesso ao site hospedado depende das permissões da plataforma. A execução local não configura automaticamente a identidade necessária às rotas protegidas de envio.
 
 ## Fonte dos conteúdos e pendências
 
