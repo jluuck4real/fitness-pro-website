@@ -1,4 +1,4 @@
-# FitnessPro · Blue Future Fitness
+# IAFit · Blue Future Fitness
 
 ## Origem e arquitetura
 

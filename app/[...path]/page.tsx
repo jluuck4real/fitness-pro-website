@@ -14,7 +14,7 @@ const titles: Record<string, string> = {
   equipe: "Nossa equipe",
   faq: "Perguntas frequentes",
   contato: "Contato",
-  assistente: "Fitness AI",
+  assistente: "IAFit AI",
   sobre: "Sobre o aplicativo",
   missao: "Nossa missão",
   funcionalidades: "Funcionalidades",
@@ -23,7 +23,7 @@ const titles: Record<string, string> = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { path } = await params;
   return {
-    title: titles[path[0]] || "Fitness Pro",
+    title: titles[path[0]] || "IAFit",
     alternates: { canonical: `/${path.join("/")}` },
     robots: titles[path[0]] ? undefined : { index: false, follow: false },
   };
@@ -48,7 +48,7 @@ export default async function Page({ params }: Props) {
               <span>Diferentes perspectivas.</span>
             </h1>
             <p>
-              Conheça as pessoas responsáveis pelo Fitness Pro, o Fitness App
+              Conheça as pessoas responsáveis pelo IAFit, o Fitness App
               desenvolvido como projeto acadêmico de TCC.
             </p>
           </div>

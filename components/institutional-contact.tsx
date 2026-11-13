@@ -82,7 +82,7 @@ export default function InstitutionalContact() {
         </h1>
         <p>
           Uma ideia, uma dúvida ou uma nova possibilidade para o projeto.
-          Compartilhe sua mensagem com a equipe do Fitness Pro.
+          Compartilhe sua mensagem com a equipe do IAFit.
         </p>
       </section>
       <section className="inst-section inst-contact-page">
@@ -96,7 +96,7 @@ export default function InstitutionalContact() {
             sobre o projeto.
           </h2>
           <p>
-            O Fitness Pro é um trabalho acadêmico que aproxima desenvolvimento,
+            O IAFit é um trabalho acadêmico que aproxima desenvolvimento,
             design e pesquisa para explorar novas formas de compreender o
             treino.
           </p>

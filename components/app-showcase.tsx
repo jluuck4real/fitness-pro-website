@@ -97,7 +97,7 @@ export default function AppShowcase() {
               loading="lazy"
             />
           </div>
-          <span>CAPTURA REAL / FITNESS PRO</span>
+          <span>CAPTURA REAL / IAFit</span>
         </div>
         <p className="inst-capture-note">{project.screenshots}</p>
       </div>

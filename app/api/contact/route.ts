@@ -78,13 +78,13 @@ export async function POST(request: Request) {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${key}`,
-        "Idempotency-Key": `fitnesspro-contact-${identity}-${data.requestId}`,
+        "Idempotency-Key": `iafit-contact-${identity}-${data.requestId}`,
       },
       body: JSON.stringify({
         from,
         to: [to],
         reply_to: data.email,
-        subject: `Fitness Pro · Mensagem de ${data.name}`,
+        subject: `IAFit · Mensagem de ${data.name}`,
         text: `Nome: ${data.name}\nE-mail: ${data.email}\n\n${data.message}`,
       }),
     });

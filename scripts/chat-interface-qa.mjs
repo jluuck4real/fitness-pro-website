@@ -43,7 +43,7 @@ try {
     throw Error("Nova conversa não limpou as mensagens");
   if (
     (await page.evaluate(() =>
-      sessionStorage.getItem("fitnesspro.chat-session.v1"),
+      sessionStorage.getItem("iafit.chat-session.v1"),
     )) !== null
   )
     throw Error("Nova conversa não limpou a sessão");

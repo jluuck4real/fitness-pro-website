@@ -1,4 +1,4 @@
-# Fitness Pro — site institucional do Fitness App
+# IAFit — site institucional do Fitness App
 
 Website oficial de apresentação do projeto acadêmico desenvolvido por João Lucas, Raul Dias e Renato Silva. Explica o aplicativo, sua missão proposta, funcionalidades, visão computacional e equipe. Não é uma conversão do Flutter para o navegador.
 

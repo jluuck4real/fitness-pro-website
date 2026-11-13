@@ -9,15 +9,15 @@ export const metadata: Metadata = {
         : "https://blue-future-fitness-pepic.duskyflint7.chatgpt.site"),
   ),
   title: {
-    default: "Fitness Pro — Tecnologia para compreender o movimento",
-    template: "%s | Fitness Pro",
+    default: "IAFit — Tecnologia para compreender o movimento",
+    template: "%s | IAFit",
   },
   description:
-    "Conheça o Fitness Pro: o aplicativo desenvolvido como projeto de TCC por João Lucas, Raul Dias e Renato Silva. Exercícios, treinos e visão computacional.",
+    "Conheça o IAFit: o aplicativo desenvolvido como projeto de TCC por João Lucas, Raul Dias e Renato Silva. Exercícios, treinos e visão computacional.",
   alternates: { canonical: "/" },
   icons: { icon: "/favicon.svg" },
   openGraph: {
-    title: "Fitness Pro — O Fitness App do nosso TCC",
+    title: "IAFit — O Fitness App do nosso TCC",
     description:
       "Aplicativo, propósito, equipe e tecnologia. Conheça o projeto que aproxima informação, atividade física e visão computacional.",
     type: "website",

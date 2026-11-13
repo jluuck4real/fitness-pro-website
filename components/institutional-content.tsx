@@ -60,7 +60,7 @@ export function TeamSection({ full = false }: { full?: boolean }) {
           Três perspectivas. Um projeto em comum.
           <br />
           Conheça a equipe que conecta desenvolvimento, design e pesquisa no
-          Fitness Pro.
+          IAFit.
         </p>
       </div>
       <div className="inst-team-grid">
@@ -74,7 +74,7 @@ export function TeamSection({ full = false }: { full?: boolean }) {
             <div className="inst-member-image">
               <img
                 src={p.image}
-                alt={`Retrato de ${p.name}, integrante da equipe Fitness Pro`}
+                alt={`Retrato de ${p.name}, integrante da equipe IAFit`}
                 width="680"
                 height="850"
                 loading={full && i === 0 ? "eager" : "lazy"}
@@ -121,7 +121,7 @@ export function AboutSection() {
             src="/institutional/screens/exercises.webp"
             width="520"
             height="987"
-            alt="Biblioteca real do Fitness Pro, com busca, grupos musculares e instruções"
+            alt="Biblioteca real do IAFit, com busca, grupos musculares e instruções"
             loading="lazy"
           />
         </div>
@@ -146,7 +146,7 @@ export function AboutSection() {
           <span>Em cada treino.</span>
         </h2>
         <p>
-          Fitness Pro é um aplicativo desenvolvido como projeto de TCC para
+          IAFit é um aplicativo desenvolvido como projeto de TCC para
           reunir exercícios, organização de treinos e acompanhamento de
           progresso em uma experiência educativa.
         </p>
@@ -314,7 +314,7 @@ export function FeaturesSection() {
   return (
     <section className="inst-section inst-features" id="funcionalidades">
       <SectionHeading
-        label="POR DENTRO DO FITNESS PRO"
+        label="POR DENTRO DO IAFit"
         title="Pensado para acompanhar sua jornada."
         text="Conheça os recursos existentes no aplicativo. Toque nas opções para explorar as telas reais do projeto."
       />
@@ -329,7 +329,7 @@ export default function InstitutionalHome() {
         <div className="inst-hero-grid" />
         <div className="inst-hero-copy">
           <span className="inst-kicker">
-            <span className="inst-online-dot" /> FITNESS PRO · O FITNESS APP DO
+            <span className="inst-online-dot" /> IAFit · O FITNESS APP DO
             NOSSO TCC
           </span>
           <h1>
@@ -382,7 +382,7 @@ export default function InstitutionalHome() {
               width="520"
               height="987"
               fetchPriority="high"
-              alt="Tela real de apresentação do Fitness Pro: Seu treino, sua evolução"
+              alt="Tela real de apresentação do IAFit: Seu treino, sua evolução"
             />
           </div>
           <div className="inst-hero-pose">
@@ -393,7 +393,7 @@ export default function InstitutionalHome() {
               <Smartphone size={17} />
             </span>
             <div>
-              <strong>Fitness Pro</strong>
+              <strong>IAFit</strong>
               <span>O aplicativo. Uma nova perspectiva.</span>
             </div>
             <ArrowUpRight size={17} />

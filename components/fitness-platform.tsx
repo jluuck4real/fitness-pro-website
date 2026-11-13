@@ -80,7 +80,7 @@ function Reveal({
 }
 function Brand() {
   return (
-    <Link href="/" className="brand" aria-label="FitnessPro início">
+    <Link href="/" className="brand" aria-label="IAFit início">
       <span className="brand-mark">
         <Activity size={25} />
       </span>
@@ -93,11 +93,11 @@ export default function FitnessPlatform() {
   const path = usePathname(),
     [menu, setMenu] = useState(false);
   const [profile, setProfile, ready, storageError] = useLocal<Profile>(
-    "fitnesspro.profile.v1",
+    "iafit.profile.v1",
     defaultProfile,
   );
   const [sessions, setSessions, , sessionError] = useLocal<Session[]>(
-    "fitnesspro.sessions.v1",
+    "iafit.sessions.v1",
     [],
   );
   const view = path.split("/")[1] || "home",
@@ -198,7 +198,7 @@ export default function FitnessPlatform() {
             </nav>
             <div className="header-actions">
               <Link href="/assistente" className="ai-nav">
-                <Sparkles size={15} /> Fitness AI{" "}
+                <Sparkles size={15} /> IAFit AI{" "}
                 <span className="tiny-badge">BETA</span>
               </Link>
               <Link
@@ -259,7 +259,7 @@ export default function FitnessPlatform() {
             </div>
             <div>
               <span>SEU ESPAÇO</span>
-              <Link href="/assistente">Fitness AI</Link>
+              <Link href="/assistente">IAFit AI</Link>
               <Link href="/progresso">Meu progresso</Link>
               <Link href="/perfil">Perfil e privacidade</Link>
             </div>
@@ -274,7 +274,7 @@ export default function FitnessPlatform() {
           </div>
           <div className="footer-bottom">
             <span>
-              © {new Date().getFullYear()} FitnessPro · Blue Future Fitness
+              © {new Date().getFullYear()} IAFit · Blue Future Fitness
             </span>
             <span>
               Informação educativa. Evolua com orientação profissional.
@@ -286,7 +286,7 @@ export default function FitnessPlatform() {
           <Link
             href="/assistente"
             className="floating-ai"
-            aria-label="Conversar com Fitness AI"
+            aria-label="Conversar com IAFit AI"
           >
             <Sparkles size={21} />
             <span>Pergunte à AI</span>
@@ -468,7 +468,7 @@ function Home({ reduced }: { reduced: boolean }) {
               <span className="feature-icon">
                 <Sparkles />
               </span>
-              <span className="pill">FITNESS AI</span>
+              <span className="pill">IAFit AI</span>
             </div>
             <h3>
               Uma boa pergunta.
@@ -969,7 +969,7 @@ function Workouts() {
         <Sparkles />
         <div>
           <h3>Seu treino começa com uma boa conversa.</h3>
-          <p>Explore seus objetivos e tire dúvidas com o Fitness AI.</p>
+          <p>Explore seus objetivos e tire dúvidas com o IAFit AI.</p>
         </div>
         <Link href="/assistente" className="button secondary">
           Conversar <Arrow />
@@ -987,7 +987,7 @@ function Workout({
 }) {
   const r = routines.find((r) => r.id === id);
   const [items, setItems, , planError] = useLocal(
-    `fitnesspro.plan.${id}.v1`,
+    `iafit.plan.${id}.v1`,
     r?.items || [],
   );
   const [running, setRunning] = useState(false),
@@ -1253,7 +1253,7 @@ function ProfilePage({
     );
     const a = document.createElement("a");
     a.href = url;
-    a.download = "fitnesspro-meus-dados.json";
+    a.download = "iafit-meus-dados.json";
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -1454,7 +1454,7 @@ function About() {
       <Intro
         eyebrow="UM PROJETO EM MOVIMENTO"
         title="Do app para o seu próximo nível."
-        description="FitnessPro conecta treinamento e reconhecimento corporal. Esta plataforma mantém a identidade e os dados do Fitness App com uma experiência própria para a web."
+        description="IAFit conecta treinamento e reconhecimento corporal. Esta plataforma mantém a identidade e os dados do Fitness App com uma experiência própria para a web."
       />
       <div className="about-grid">
         <div className="panel">
@@ -1498,7 +1498,7 @@ function About() {
             "Apenas ao usar o Movement Lab. A câmera só é ativada após sua ação e a permissão do navegador. Os frames são processados localmente.",
           ],
           [
-            "O Fitness AI substitui um profissional?",
+            "O IAFit AI substitui um profissional?",
             "Não. O assistente fornece informações educativas e usa o catálogo de exercícios como contexto. Prescrição individual, diagnóstico e reabilitação exigem profissionais habilitados.",
           ],
           [

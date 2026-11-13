@@ -30,9 +30,9 @@ export default function Chat() {
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
     [configured, setConfigured] = useState<boolean | null>(null),
-    [history, setHistory] = useLocal<Conversation[]>("fitnesspro.chats.v1", []),
+    [history, setHistory] = useLocal<Conversation[]>("iafit.chats.v1", []),
     [remember, setRemember] = useLocal<boolean>(
-      "fitnesspro.remember.v1",
+      "iafit.remember.v1",
       false,
     ),
     [conversation, setConversation] = useState(""),
@@ -44,7 +44,7 @@ export default function Chat() {
   useEffect(() => {
     queueMicrotask(() => {
       try {
-        const saved = sessionStorage.getItem("fitnesspro.chat-session.v1");
+        const saved = sessionStorage.getItem("iafit.chat-session.v1");
         if (saved) setMessages(JSON.parse(saved));
       } catch {
         setError("Não foi possível recuperar a conversa desta sessão.");
@@ -56,7 +56,7 @@ export default function Chat() {
       queueMicrotask(() => {
         try {
           sessionStorage.setItem(
-            "fitnesspro.chat-session.v1",
+            "iafit.chat-session.v1",
             JSON.stringify(messages),
           );
         } catch {
@@ -83,7 +83,7 @@ export default function Chat() {
     abort.current?.abort();
     setMessages([]);
     try {
-      sessionStorage.removeItem("fitnesspro.chat-session.v1");
+      sessionStorage.removeItem("iafit.chat-session.v1");
     } catch {}
     setConversation("");
     setError("");
@@ -169,7 +169,7 @@ export default function Chat() {
     <div className="chat-shell">
       <aside className={sidebar ? "chat-sidebar mobile-open" : "chat-sidebar"}>
         <div className="chat-brand">
-          <Sparkles /> FITNESS AI <span className="tiny-badge">BETA</span>
+          <Sparkles /> IAFit AI <span className="tiny-badge">BETA</span>
         </div>
         <button className="button primary" onClick={fresh}>
           <Plus size={17} /> Nova conversa
@@ -245,7 +245,7 @@ export default function Chat() {
           >
             <Plus size={17} />
           </button>
-          <span>Conheça o Fitness Pro</span>
+          <span>Conheça o IAFit</span>
           <span className="pill">
             {configured === null
               ? "VERIFICANDO"
@@ -278,7 +278,7 @@ export default function Chat() {
               <p>
                 Conheça o aplicativo, explore sua tecnologia e tire suas
                 dúvidas.
-                <br />O que você quer descobrir sobre o Fitness Pro?
+                <br />O que você quer descobrir sobre o IAFit?
               </p>
               <div className="suggestions">
                 {[
@@ -289,7 +289,7 @@ export default function Chat() {
                   ],
                   [
                     "Conhecer o projeto",
-                    "O que é o Fitness Pro e quem desenvolve o projeto?",
+                    "O que é o IAFit e quem desenvolve o projeto?",
                     Target,
                   ],
                   [
@@ -328,7 +328,7 @@ export default function Chat() {
                   </span>
                   <div className="message-content">
                     <span className="message-author">
-                      {m.role === "assistant" ? "Fitness AI" : "Você"}
+                      {m.role === "assistant" ? "IAFit AI" : "Você"}
                     </span>
                     {m.content ? (
                       <Markdown>{m.content}</Markdown>
@@ -413,7 +413,7 @@ export default function Chat() {
           >
             <textarea
               aria-label="Sua mensagem"
-              placeholder="O que você quer saber sobre o Fitness Pro?"
+              placeholder="O que você quer saber sobre o IAFit?"
               maxLength={2000}
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -426,7 +426,7 @@ export default function Chat() {
             />
             <div>
               <span>
-                <Sparkles size={14} /> Fitness AI{" "}
+                <Sparkles size={14} /> IAFit AI{" "}
                 <small>· {input.length}/2000</small>
               </span>
               {busy ? (

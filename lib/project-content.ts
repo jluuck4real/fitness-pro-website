@@ -1,7 +1,7 @@
 // Verified against C:/src/fitness_app and the original ../team.html.
 // Editorial institutional statements are explicitly labeled below.
 export const project = {
-  name: "Fitness Pro",
+  name: "IAFit",
   context: "Fitness App · Projeto de TCC",
   description:
     "Aplicativo educativo de organização de treinos, exercícios e acompanhamento de progresso, desenvolvido por João Lucas, Raul Dias e Renato Silva como projeto acadêmico de TCC.",
@@ -49,7 +49,7 @@ export const features = [
     description:
       "Uma biblioteca com oito exercícios, instruções específicas e filtros por grupo muscular. O primeiro passo é conhecer o movimento.",
     screen: "exercises",
-    alt: "Tela real da biblioteca de exercícios do Fitness Pro",
+    alt: "Tela real da biblioteca de exercícios do IAFit",
     tags: ["Catálogo compartilhado", "Instruções de execução"],
   },
   {
@@ -89,7 +89,7 @@ export const faqs = [
     category: "O projeto",
     question: "O que é o Fitness App?",
     answer:
-      "Fitness App é o projeto do aplicativo Fitness Pro, desenvolvido em Flutter por João Lucas, Raul Dias e Renato Silva como trabalho acadêmico de TCC. Ele reúne organização de treinos, exercícios, conteúdo educativo e acompanhamento de progresso.",
+      "Fitness App é o projeto do aplicativo IAFit, desenvolvido em Flutter por João Lucas, Raul Dias e Renato Silva como trabalho acadêmico de TCC. Ele reúne organização de treinos, exercícios, conteúdo educativo e acompanhamento de progresso.",
   },
   {
     id: "objetivo",

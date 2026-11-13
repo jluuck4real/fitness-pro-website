@@ -12,7 +12,7 @@ const links = [
 ];
 export function InstitutionBrand() {
   return (
-    <Link href="/" className="inst-brand" aria-label="fitnesspro — Início">
+    <Link href="/" className="inst-brand" aria-label="IAFit — Início">
       <span>
         <Zap size={24} fill="currentColor" />
       </span>
@@ -178,7 +178,7 @@ export default function InstitutionalShell({
         </div>
         <div className="inst-footer-bottom">
           <span>
-            © {new Date().getFullYear()} Fitness Pro. Um projeto de João Lucas,
+            © {new Date().getFullYear()} IAFit. Um projeto de João Lucas,
             Raul Dias e Renato Silva.
           </span>
           <Link href="/faq#privacidade">
@@ -190,7 +190,7 @@ export default function InstitutionalShell({
         <Link
           className="inst-floating-ai"
           href="/assistente"
-          aria-label="Converse com a IA — assistente do Fitness Pro"
+          aria-label="Converse com a IA — assistente do IAFit"
         >
           <Sparkles size={21} />
           <span>Converse com a IA</span>

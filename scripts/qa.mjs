@@ -77,7 +77,7 @@ await page.getByText("Sessão registrada", { exact: true }).waitFor();
 await page.getByRole("link", { name: "Ver meu progresso" }).click();
 await page.locator(".history-row").nth(1).waitFor();
 const sessions = await page.evaluate(() =>
-  JSON.parse(localStorage.getItem("fitnesspro.sessions.v1") || "[]"),
+  JSON.parse(localStorage.getItem("iafit.sessions.v1") || "[]"),
 );
 if (sessions.length !== 1 || sessions[0].sets !== 12 || sessions[0].seconds < 1)
   throw Error("Persistência de treino falhou");

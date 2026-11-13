@@ -1,10 +1,10 @@
-# Fontes institucionais do Fitness Pro
+# Fontes institucionais do IAFit
 
 Revisão da pasta `C:/src/fitness_app` e do site HTML original em `../`. Nenhum arquivo do Flutter foi alterado.
 
 | Informação | Fonte | Uso no site |
 | --- | --- | --- |
-| Nome “Fitness Pro” | `lib/main.dart`, `README.md`, `lib/screens/settings/settings_screen.dart` | Nome oficial; “Fitness App” identifica o projeto |
+| Nome “IAFit” | Identidade adotada no website | Nome público do site; “Fitness App” identifica o projeto de origem |
 | Projeto acadêmico de TCC | `lib/screens/settings/settings_screen.dart`, seção Sobre | Apresentação institucional |
 | João Lucas, Raul Dias e Renato Silva | Seção Sobre do aplicativo | Equipe real |
 | Funções e fotografias | `../team.html`, `../oiiiiiii.jpeg`, `../raul.jpeg`, `../renato.jpeg` | Desenvolvimento; design e concepção; pesquisa. Sem títulos ou links profissionais inventados |

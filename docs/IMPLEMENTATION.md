@@ -1,8 +1,8 @@
-# Implementação institucional — Fitness Pro
+# Implementação institucional — IAFit
 
 ## Escopo e arquitetura
 
-A Home foi reformulada para apresentar o aplicativo Fitness Pro, projeto de TCC de João Lucas, Raul Dias e Renato Silva. A navegação principal contém apresentação, missão proposta, recursos, tecnologia, equipe, FAQ, contato e chatbot. O website não executa o Flutter nem tenta substituir o aplicativo.
+A Home foi reformulada para apresentar o aplicativo IAFit, projeto de TCC de João Lucas, Raul Dias e Renato Silva. A navegação principal contém apresentação, missão proposta, recursos, tecnologia, equipe, FAQ, contato e chatbot. O website não executa o Flutter nem tenta substituir o aplicativo.
 
 A stack existente foi preservada: React 19, TypeScript, Vinext/Vite compatível com rotas Next.js, Tailwind 4 e Cloudflare Workers. A navegação usa anchors nativos e View Transitions como melhoria progressiva, preservando a correção do problema de navegação RSC observado anteriormente em produção. Nenhuma biblioteca 3D foi adicionada. Lighthouse foi adicionado exclusivamente como dependência de desenvolvimento para auditoria.
 
