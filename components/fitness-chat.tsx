@@ -169,7 +169,7 @@ export default function Chat() {
     <div className="chat-shell">
       <aside className={sidebar ? "chat-sidebar mobile-open" : "chat-sidebar"}>
         <div className="chat-brand">
-          <Sparkles /> IAFit AI <span className="tiny-badge">BETA</span>
+          <Sparkles /> IAFit <span className="tiny-badge">BETA</span>
         </div>
         <button className="button primary" onClick={fresh}>
           <Plus size={17} /> Nova conversa
@@ -328,7 +328,7 @@ export default function Chat() {
                   </span>
                   <div className="message-content">
                     <span className="message-author">
-                      {m.role === "assistant" ? "IAFit AI" : "Você"}
+                      {m.role === "assistant" ? "IAFit" : "Você"}
                     </span>
                     {m.content ? (
                       <Markdown>{m.content}</Markdown>
@@ -426,7 +426,7 @@ export default function Chat() {
             />
             <div>
               <span>
-                <Sparkles size={14} /> IAFit AI{" "}
+                <Sparkles size={14} /> IAFit{" "}
                 <small>· {input.length}/2000</small>
               </span>
               {busy ? (

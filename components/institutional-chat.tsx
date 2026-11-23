@@ -7,7 +7,7 @@ export default function InstitutionalChat() {
     <InstitutionalShell page="assistente">
       <section className="inst-chat-page">
         <h1 className="inst-chat-heading">
-          IAFit AI <span>Seu assistente para conhecer o projeto.</span>
+          IAFit <span>Seu assistente para conhecer o projeto.</span>
         </h1>
         <Chat />
       </section>

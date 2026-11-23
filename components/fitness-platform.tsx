@@ -198,7 +198,7 @@ export default function FitnessPlatform() {
             </nav>
             <div className="header-actions">
               <Link href="/assistente" className="ai-nav">
-                <Sparkles size={15} /> IAFit AI{" "}
+                <Sparkles size={15} /> IAFit{" "}
                 <span className="tiny-badge">BETA</span>
               </Link>
               <Link
@@ -259,7 +259,7 @@ export default function FitnessPlatform() {
             </div>
             <div>
               <span>SEU ESPAÇO</span>
-              <Link href="/assistente">IAFit AI</Link>
+              <Link href="/assistente">IAFit</Link>
               <Link href="/progresso">Meu progresso</Link>
               <Link href="/perfil">Perfil e privacidade</Link>
             </div>
@@ -286,7 +286,7 @@ export default function FitnessPlatform() {
           <Link
             href="/assistente"
             className="floating-ai"
-            aria-label="Conversar com IAFit AI"
+            aria-label="Conversar com IAFit"
           >
             <Sparkles size={21} />
             <span>Pergunte à AI</span>
@@ -468,7 +468,7 @@ function Home({ reduced }: { reduced: boolean }) {
               <span className="feature-icon">
                 <Sparkles />
               </span>
-              <span className="pill">IAFit AI</span>
+              <span className="pill">IAFit</span>
             </div>
             <h3>
               Uma boa pergunta.
@@ -969,7 +969,7 @@ function Workouts() {
         <Sparkles />
         <div>
           <h3>Seu treino começa com uma boa conversa.</h3>
-          <p>Explore seus objetivos e tire dúvidas com o IAFit AI.</p>
+          <p>Explore seus objetivos e tire dúvidas com o IAFit.</p>
         </div>
         <Link href="/assistente" className="button secondary">
           Conversar <Arrow />
@@ -1498,7 +1498,7 @@ function About() {
             "Apenas ao usar o Movement Lab. A câmera só é ativada após sua ação e a permissão do navegador. Os frames são processados localmente.",
           ],
           [
-            "O IAFit AI substitui um profissional?",
+            "O IAFit substitui um profissional?",
             "Não. O assistente fornece informações educativas e usa o catálogo de exercícios como contexto. Prescrição individual, diagnóstico e reabilitação exigem profissionais habilitados.",
           ],
           [

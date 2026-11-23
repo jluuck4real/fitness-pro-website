@@ -14,7 +14,7 @@ const titles: Record<string, string> = {
   equipe: "Nossa equipe",
   faq: "Perguntas frequentes",
   contato: "Contato",
-  assistente: "IAFit AI",
+  assistente: "IAFit",
   sobre: "Sobre o aplicativo",
   missao: "Nossa missão",
   funcionalidades: "Funcionalidades",
