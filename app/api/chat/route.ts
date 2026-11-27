@@ -20,7 +20,8 @@ function config() {
   const e = serverEnvironment();
   return {
     key: e.GEMINI_API_KEY || process.env.GEMINI_API_KEY,
-    model: e.GEMINI_MODEL || process.env.GEMINI_MODEL || "gemini-3.6-flash",
+    model:
+      e.GEMINI_MODEL || process.env.GEMINI_MODEL || "gemini-3.5-flash-lite",
   };
 }
 export async function GET() {
